@@ -1,0 +1,42 @@
+JuiceScan -> Target: http://localhost:3000/
+
+[*] Enumerating common paths...
+  /                  -> 200
+  /#/login           -> 200
+  /assets            -> 200
+  /ftp               -> 200
+  /.git/config       -> 200
+  /package.json      -> 200
+  /api/Products      -> 200
+  /api/Users         -> 401
+  /api/Orders        -> 500
+  /api/Reviews       -> 500
+  /rest              -> 500
+
+[*] Testing for simple reflected XSS in common endpoints...
+
+[*] Testing for basic SQLi indications on search endpoints...
+  [POSSIBLE SQLi] /api/Products payload '' OR '1'='1' caused abnormal response (len 30)
+  [POSSIBLE SQLi] /api/Products payload '' OR '1'='1' -- ' caused abnormal response (len 30)
+
+[*] Testing for IDOR / Broken Access Control on product endpoints...
+
+[*] Checking for commonly exposed files/paths...
+  [EXPOSED] /package.json -> 200, sample: '<!--   ~ Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.   ~ SPDX-License-Identifier: MIT   -->  <!doctype html> <html lang="en" data-beasties-container> <head>   <meta charset="utf-8">   <title>OWASP Juice Shop</title>   <meta name="description" content="Probably the m'
+  [EXPOSED] /config.js -> 200, sample: '<!--   ~ Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.   ~ SPDX-License-Identifier: MIT   -->  <!doctype html> <html lang="en" data-beasties-container> <head>   <meta charset="utf-8">   <title>OWASP Juice Shop</title>   <meta name="description" content="Probably the m'
+  [EXPOSED] /.env -> 200, sample: '<!--   ~ Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.   ~ SPDX-License-Identifier: MIT   -->  <!doctype html> <html lang="en" data-beasties-container> <head>   <meta charset="utf-8">   <title>OWASP Juice Shop</title>   <meta name="description" content="Probably the m'
+  [EXPOSED] /ftp -> 200, sample: '<!DOCTYPE html> <html>   <head>     <meta charset=\'utf-8\'>      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />     <title>listing directory /ftp</title>     <style>* {   margin: 0;   padding: 0;   outline: 0; }  body {   padding: 80px 10'
+  [EXPOSED] /.git/config -> 200, sample: '<!--   ~ Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.   ~ SPDX-License-Identifier: MIT   -->  <!doctype html> <html lang="en" data-beasties-container> <head>   <meta charset="utf-8">   <title>OWASP Juice Shop</title>   <meta name="description" content="Probably the m'
+
+--- Summary ---
+XSS candidates: 0
+SQLi candidates: 2
+  ('/api/Products', "' OR '1'='1", 200)
+  ('/api/Products', "' OR '1'='1' -- ", 200)
+IDOR candidates: 0
+Exposed files: 5
+  /package.json
+  /config.js
+  /.env
+  /ftp
+  /.git/config
