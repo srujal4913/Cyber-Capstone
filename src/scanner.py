@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-juice_scan1.py - small educational scanner (synchronous)
+scanner.py - small educational scanner (synchronous)
 Usage:
-    python juice_scan1.py http://localhost:3000
+    python scanner.py http://localhost:3000
 
 Only run against systems you own or are authorized to test.
 """
@@ -158,7 +158,7 @@ def main():
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python juice_scan.py http://localhost:3000")
+        print("Usage: python scanner.py http://localhost:3000")
         sys.exit(1)
 
     TARGET = sys.argv[1].rstrip("/") + "/"

@@ -1,7 +1,7 @@
-# web_ui_bootstrap1.py
+# web_ui.py
 """
 Flask UI with Bootstrap for OWASP Juice Shop Vulnerability Scanner
-Run with: python web_ui_bootstrap1.py
+Run with: python web_ui.py
 Then open: http://127.0.0.1:5000
 """
 
@@ -17,7 +17,7 @@ import time
 
 APP_DIR = Path(__file__).parent.resolve()
 DEFAULT_TARGET = "http://localhost:3000"
-SCANNER_SCRIPT = APP_DIR / "juice_scan1.py"  # or juice_scan.py
+SCANNER_SCRIPT = APP_DIR / "scanner.py"
 LOG_FILE = APP_DIR / "juice_scan_stdout.log"
 # Note: We removed JSON support per your request. Reports will be TXT files named scan_report_YYYY-MM-DD.txt
 
